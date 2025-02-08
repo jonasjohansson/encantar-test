@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1, maximum-scale=1"
+    />
+    <title>encantar.js WebAR demo</title>
+    <script src="encantar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe@1.6.0/dist/aframe-v1.6.0.min.js"></script>
+    <script src="aframe-with-encantar.js"></script>
+    <script src="aframe-scan-gimmick-for-encantar.js"></script>
+    <script src="aframe-gltf-anim.js"></script>
+    <style>
+      body {
+        background-color: #3d5afe;
+      }
+      #scan {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        opacity: 0.75;
+      }
+    </style>
+  </head>
+  <body>
+    <a-scene
+      encantar="stats: true; gizmos: true"
+      loading-screen="enabled: false"
+    >
+      <!-- Sources of data -->
+      <ar-sources>
+        <ar-camera-source></ar-camera-source>
+        <!-- webcam -->
+      </ar-sources>
+
+      <!-- Trackers -->
+      <ar-trackers>
+        <ar-image-tracker>
+          <ar-reference-image
+            name="mage"
+            src="https://cdn.glitch.global/cee10bb5-dbb4-4168-8f21-ebed4e5cdabc/image.webp?v=1739009733527"
+          ></ar-reference-image>
+        </ar-image-tracker>
+      </ar-trackers>
+
+      <!-- The AR viewport -->
+      <ar-viewport>
+        <!-- A 2D overlay displayed in front of the AR scene -->
+        <ar-hud>
+          <!-- The info button -->
+          <a id="info" href="NOTICE.html" draggable="false"></a>
+
+          <!-- The like button -->
+          <a id="like" href="../assets/promo.html" draggable="false"></a>
+
+          <!-- The scan gimmick -->
+          <a-entity ar-scan-gimmick="opacity: 0.75"></a-entity>
+        </ar-hud>
+      </ar-viewport>
+
+      <!-- Virtual camera for AR -->
+      <ar-camera></ar-camera>
+
+      <!-- Root node: this will be displayed in AR -->
+      <ar-root reference-image="mage">
+        <a-box color="yellow" position="0 0 0.5"></a-box>
+      </ar-root>
+    </a-scene>
+  </body>
+</html>
